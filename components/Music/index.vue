@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { usePlayer } from '~~/store/player'
-// const { activeSong, currentSongs, currentIndex, isActive, isPlaying } = usePlayer()
+
 const PlayerStore = usePlayer()
-const { togglePlaying, seekSong, toggleRepeating, setSongVolume } = PlayerStore
+const { togglePlaying, seekSong, toggleRepeating, setSongVolume, goNextSong, goPrevSong } = PlayerStore
 const { isPlaying, songTime, songDuration, songVolume } = storeToRefs(PlayerStore)
 // music controls
 const handlePrevSong = () => {}
@@ -19,8 +19,8 @@ const shuffle = ref(false)
     <div class="flex-1 flex flex-col items-center justify-center">
       <MusicControls
         :isPlaying="isPlaying"
-        @goNext="handleNextSong"
-        @goPrev="handlePrevSong"
+        @goNext="goNextSong"
+        @goPrev="goPrevSong"
         @repeat="toggleRepeating"
         @shuffle="setShuffle"
         @togglePlaying="togglePlaying"

@@ -78,6 +78,28 @@ export const usePlayer = defineStore('player', () => {
     $audio.volume = songVolume.value
   }
 
+  function goNextSong() {
+    const songsCount = currentSongs.value.length
+    if (currentSongIndex.value < songsCount - 1) {
+      const nextSong = currentSongs.value[currentSongIndex.value + 1]
+      togglePlaying(nextSong)
+    } else {
+      const firstSong = currentSongs.value[0]
+      togglePlaying(firstSong)
+    }
+  }
+
+  function goPrevSong() {
+    const songsCount = currentSongs.value.length
+    if (currentSongIndex.value > 0) {
+      const prevSong = currentSongs.value[currentSongIndex.value - 1]
+      togglePlaying(prevSong)
+    } else {
+      const lastSong = currentSongs.value[songsCount - 1]
+      togglePlaying(lastSong)
+    }
+  }
+
   return {
     isPlaying,
     songTime,
@@ -89,6 +111,7 @@ export const usePlayer = defineStore('player', () => {
     seekSong,
     toggleRepeating,
     setSongVolume,
-    // setPlayer
+    goNextSong,
+    goPrevSong,
   }
 })
