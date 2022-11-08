@@ -1,15 +1,13 @@
 <script setup lang="ts">
+import type { PropType } from 'vue';
+import { chartsWorld } from '~~/types';
+
 defineProps({
-  song: { type: Object },
-  isPlaying: { type: Boolean },
-  activeSong: { type: Object },
-  data: { type: Array },
-  index: { type: Number },
+  song: { type: Object as PropType<chartsWorld> },
+  active: { type: Boolean, default: false },
 })
+defineEmits(['togglePlaying'])
 
-const handlePauseClick = () => {}
-
-const handlePlayClick = () => {}
 </script>
 
 <template>
@@ -19,17 +17,14 @@ const handlePlayClick = () => {}
     <div class="relative w-full h-56 group">
       <div
         class="absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex"
-        :class="activeSong?.title === song?.title ? 'flex bg-black bg-opacity-70' : 'hidden'"
+        :class="active ? 'flex bg-black bg-opacity-70' : 'hidden'"
       >
         <PlayPause
-          :isPlaying="isPlaying"
-          :activeSong="activeSong"
-          :song="song"
-          :handlePause="handlePauseClick"
-          :handlePlay="handlePlayClick"
+          :active="active"
+          @togglePlaying="$emit('togglePlaying')"
         />
       </div>
-      <img alt="song_img" :src="song?.images?.coverart" class="w-full h-full rounded-lg" />
+      <img alt="song_img" :src="song?.images?.background" class="w-full h-full rounded-lg" />
     </div>
 
     <div class="mt-4 flex flex-col">

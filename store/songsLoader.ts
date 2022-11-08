@@ -4,8 +4,17 @@ import { defineStore } from 'pinia'
 export const useSongsLoader = defineStore('songsLoader', () => {
   const { $mande } = useNuxtApp()
 
-  async function getTopCharts(): Promise<chartsWorld[]> {
-    return await $mande.get('/charts/world')
+  const loadErr = ref(false)
+  const topCharts = ref<chartsWorld[]>([])
+
+  async function getTopCharts()/* : Promise<chartsWorld[]> */ {
+    try {
+      const result = await $mande.get('/charts/world') as chartsWorld[];
+      topCharts.value = result
+    } catch (err) {
+      console.log(err);
+      loadErr.value = true 
+    }
   }
 
   async function getSongsByGenre(genre: string): Promise<chartsWorld[]> {
@@ -34,6 +43,7 @@ export const useSongsLoader = defineStore('songsLoader', () => {
 
   return {
     getTopCharts,
+    topCharts,
     getSongsByGenre,
     getSongsByCountry,
     getSongsBySearch,
