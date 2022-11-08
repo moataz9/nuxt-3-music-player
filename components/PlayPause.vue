@@ -7,12 +7,6 @@ const prop = defineProps({
 })
 defineEmits(['togglePlaying'])
 const isPlaying = inject('isPlaying') as Ref
-onMounted(() => {
-  console.log(isPlaying.value, prop.active)
-})
-watch(isPlaying, newvalue => {
-  console.log(newvalue)
-})
 </script>
 
 <template>
