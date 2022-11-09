@@ -1,5 +1,5 @@
 import { defineStore, storeToRefs } from 'pinia'
-import { chartsWorld } from '~~/types'
+import { chartsWorld, CurrentSong } from '~~/types'
 import { useSongsLoader } from './songsLoader'
 
 export const usePlayer = defineStore('player', () => {
@@ -10,13 +10,14 @@ export const usePlayer = defineStore('player', () => {
   const genreListedId = ref('')
 
   const currentSongs = ref<chartsWorld[]>([])
-  const currentSong = ref()
+  const currentSong = ref<CurrentSong>()
   const currentSongIndex = ref(0)
   const songsLoader = useSongsLoader()
   const { topCharts } = storeToRefs(songsLoader)
 
   const isPlaying = ref(false)
   const isRepeating = ref(false)
+  const isShuffling = ref(false)
   const songTime = ref(0)
   const songDuration = ref(0)
   const songVolume = ref(0.3)
@@ -32,6 +33,13 @@ export const usePlayer = defineStore('player', () => {
     }
     $audio.onended = () => {
       isPlaying.value = false
+      if (isShuffling.value) {
+        const randomIndex = Math.floor(Math.random() * currentSongs.value.length)
+        const randomSong = currentSongs.value[randomIndex]
+        togglePlaying(randomSong)
+      } else {
+        goNextSong()
+      }
     }
   })
 
@@ -43,12 +51,14 @@ export const usePlayer = defineStore('player', () => {
           image: song.images.background,
           key: song.key,
           songUri: song.hub.actions[1].uri,
+          title: song.title,
+          subtitle: song.subtitle
         }
 
         isPlaying.value = true
-        $audio.src = currentSong.value.songUri
+        $audio.src = currentSong.value.songUri as string
 
-        if (isRepeating) $audio.loop = true
+        if (isRepeating.value) $audio.loop = true
 
         currentSongs.value = topCharts.value
 
@@ -70,8 +80,12 @@ export const usePlayer = defineStore('player', () => {
   }
 
   function toggleRepeating() {
-    isRepeating.value = !isRepeating
+    isRepeating.value = !isRepeating.value
     $audio.loop = !$audio.loop
+  }
+
+  function toggleShuffling() {
+    isShuffling.value = !isShuffling.value
   }
 
   function setSongVolume() {
@@ -102,6 +116,8 @@ export const usePlayer = defineStore('player', () => {
 
   return {
     isPlaying,
+    isRepeating,
+    isShuffling,
     songTime,
     songDuration,
     songVolume,
@@ -113,5 +129,6 @@ export const usePlayer = defineStore('player', () => {
     setSongVolume,
     goNextSong,
     goPrevSong,
+    toggleShuffling,
   }
 })

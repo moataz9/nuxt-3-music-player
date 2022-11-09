@@ -1,28 +1,34 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
+import { CurrentSong } from '~~/types'
 import { usePlayer } from '~~/store/player'
 
 const PlayerStore = usePlayer()
-const { togglePlaying, seekSong, toggleRepeating, setSongVolume, goNextSong, goPrevSong } = PlayerStore
-const { isPlaying, songTime, songDuration, songVolume } = storeToRefs(PlayerStore)
-// music controls
-const handlePrevSong = () => {}
-const handleNextSong = () => {}
-const setShuffle = () => (shuffle.value = true)
-
-const shuffle = ref(false)
+const {
+  togglePlaying,
+  seekSong,
+  toggleRepeating,
+  setSongVolume,
+  goNextSong,
+  goPrevSong,
+  toggleShuffling,
+} = PlayerStore
+const { isPlaying, songTime, songDuration, songVolume, isRepeating, isShuffling, currentSong } =
+  storeToRefs(PlayerStore)
 </script>
 
 <template>
   <div class="relative sm:px-12 px-8 w-full flex items-center justify-between">
-    <!-- <MusicTrack :isPlaying="isPlaying" :activeSong="activeSong" /> -->
+    <MusicTrack :isPlaying="isPlaying" :activeSong="(currentSong as CurrentSong)" />
     <div class="flex-1 flex flex-col items-center justify-center">
       <MusicControls
         :isPlaying="isPlaying"
+        :isRepeating="isRepeating"
+        :isShuffling="isShuffling"
         @goNext="goNextSong"
         @goPrev="goPrevSong"
         @repeat="toggleRepeating"
-        @shuffle="setShuffle"
+        @shuffle="toggleShuffling"
         @togglePlaying="togglePlaying"
       />
       <MusicSeekbar

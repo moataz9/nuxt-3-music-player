@@ -1,24 +1,11 @@
 <script setup lang="ts">
-const repeat = ref(false)
-const shuffle = ref(false)
-
 defineProps({
-  isPlaying: Boolean
+  isPlaying: Boolean,
+  isRepeating: Boolean,
+  isShuffling: Boolean,
 })
 
 const emit = defineEmits(['shuffle', 'repeat', 'goNext', 'goPrev', 'togglePlaying'])
-
-const togglePlaying = () => {
-  emit('togglePlaying')
-}
-const toggleShuffle = () => {
-  shuffle.value = !shuffle.value
-  emit('shuffle')
-}
-const toggleRepeat = () => {
-  repeat.value = !repeat.value
-  emit('repeat')
-}
 </script>
 
 <template>
@@ -26,8 +13,8 @@ const toggleRepeat = () => {
     <Icon
       name="mdi:repeat"
       size="20"
-      :color="repeat ? 'blue' : 'white'"
-      @click="toggleRepeat"
+      :color="isRepeating ? '#030313' : 'white'"
+      @click="emit('repeat')"
       class="hidden sm:block cursor-pointer"
     />
     <Icon
@@ -42,7 +29,7 @@ const toggleRepeat = () => {
       name="mdi:pause"
       size="45"
       color="#FFF"
-      @click="togglePlaying"
+      @click="emit('togglePlaying')"
       class="cursor-pointer"
     />
     <Icon
@@ -50,15 +37,15 @@ const toggleRepeat = () => {
       name="mdi:play"
       size="45"
       color="#FFF"
-      @click="togglePlaying"
+      @click="emit('togglePlaying')"
       class="cursor-pointer"
     />
     <Icon name="mdi:skip-next" size="30" color="#FFF" class="cursor-pointer" @click="$emit('goNext')" />
     <Icon
       name="mdi:shuffle-variant"
       size="20"
-      :color="shuffle ? 'blue' : 'white'"
-      @click="toggleShuffle"
+      :color="isShuffling ? '#030313' : 'white'"
+      @click="emit('shuffle')"
       class="hidden sm:block cursor-pointer"
     />
   </div>
