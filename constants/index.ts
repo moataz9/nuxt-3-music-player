@@ -13,4 +13,11 @@ export const genres = [
   { title: 'Reggae', value: 'REGGAE_DANCE_HALL' },
   { title: 'House', value: 'HOUSE' },
   { title: 'K-Pop', value: 'K_POP' },
-];
+]
+
+export const links = [
+  { name: 'Discover', to: '/', icon: 'fa:home' },
+  { name: 'Around You', to: '/around-you', icon: 'fa:camera' },
+  { name: 'Top Artists', to: '/top-artists', icon: 'fa:trophy' },
+  { name: 'Top Charts', to: '/top-charts', icon: 'fa:thumbs-up' },
+]
