@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { storeToRefs } from 'pinia'
+import { usePlayer } from '~~/store/player'
+
+const { currentSong } = storeToRefs(usePlayer())
+</script>
 
 <template>
   <div class="relative flex min-h-screen">
@@ -19,6 +24,7 @@
 
     <div
       class="absolute h-28 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg rounded-t-3xl z-10"
+      v-if="currentSong"
     >
       <clientOnly>
         <Music />
