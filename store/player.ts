@@ -39,12 +39,12 @@ export const usePlayer = defineStore('player', () => {
   })
 
   function togglePlaying(song?: chartsWorld, songs?: chartsWorld[]) {
-    const currentRoute = useRoute()
+    // const currentRoute = useRoute()
 
-    if (currentSongsRoute.value !== currentRoute.fullPath) {
-      currentSongsRoute.value = currentRoute.fullPath
+    // if (currentSongsRoute.value !== currentRoute.fullPath) {
+      // currentSongsRoute.value = currentRoute.fullPath
       if (songs) currentSongs.value = songs
-    }
+    // }
 
     isPlaying.value = !isPlaying.value
 
