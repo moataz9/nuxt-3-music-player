@@ -1,6 +1,6 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { chartsWorld, CurrentSong } from '~~/types'
-import { useSongsLoader } from './songsLoader'
+// import { useSongsLoader } from './songsLoader'
 
 export const usePlayer = defineStore('player', () => {
   const { $audio } = useNuxtApp()
@@ -12,8 +12,7 @@ export const usePlayer = defineStore('player', () => {
   const currentSongs = ref<chartsWorld[]>([])
   const currentSong = ref<CurrentSong>()
   const currentSongIndex = ref(0)
-  const songsLoader = useSongsLoader()
-  const { topCharts } = storeToRefs(songsLoader)
+  const currentSongsRoute = ref('')
 
   const isPlaying = ref(false)
   const isRepeating = ref(false)
@@ -43,8 +42,16 @@ export const usePlayer = defineStore('player', () => {
     }
   })
 
-  function togglePlaying(song?: chartsWorld) {
+  function togglePlaying(song?: chartsWorld, songs?: chartsWorld[]) {
+    const currentRoute = useRoute()
+
+    if (currentSongsRoute.value !== currentRoute.fullPath) {
+      currentSongsRoute.value = currentRoute.fullPath
+      if (songs) currentSongs.value = songs
+    }
+
     isPlaying.value = !isPlaying.value
+
     if (song) {
       if (song.key !== currentSong.value?.key) {
         currentSong.value = {
@@ -52,15 +59,13 @@ export const usePlayer = defineStore('player', () => {
           key: song.key,
           songUri: song.hub.actions[1].uri,
           title: song.title,
-          subtitle: song.subtitle
+          subtitle: song.subtitle,
         }
 
         isPlaying.value = true
         $audio.src = currentSong.value.songUri as string
 
         if (isRepeating.value) $audio.loop = true
-
-        currentSongs.value = topCharts.value
 
         currentSongIndex.value = currentSongs.value.findIndex(
           item => item.key === currentSong.value?.key
