@@ -5,10 +5,6 @@ import { chartsWorld, CurrentSong } from '~~/types'
 export const usePlayer = defineStore('player', () => {
   const { $audio } = useNuxtApp()
 
-  const isActive = ref(false)
-  const activeSong = ref({})
-  const genreListedId = ref('')
-
   const currentSongs = ref<chartsWorld[]>([])
   const currentSong = ref<CurrentSong>()
   const currentSongIndex = ref(0)
