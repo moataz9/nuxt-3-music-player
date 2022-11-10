@@ -18,7 +18,7 @@ const { currentSong } = storeToRefs(usePlayer())
         <div class="flex-1 h-fit pb-40">
           <slot />
         </div>
-        <div class="xl:sticky relative top-0 h-fit">TopPlay</div>
+        <div class="xl:sticky relative top-0 h-fit"><TopPlay/></div>
       </div>
     </div>
 
