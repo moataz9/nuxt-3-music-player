@@ -31,7 +31,7 @@ provide('isPlaying', isPlaying)
       </span>
     </h2>
 
-    <div class="flex flex-wrap sm:justify-start justify-center gap-8">
+    <div class="flex flex-wrap sm:justify-start lg:justify-center gap-3">
       <SongCard
         v-for="song in countryCharts?.LocationCharts"
         :key="song.key"
