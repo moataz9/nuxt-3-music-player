@@ -3,6 +3,15 @@ import { storeToRefs } from 'pinia'
 import { usePlayer } from '~~/store/player'
 import { chartsWorld } from '~~/types'
 
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { FreeMode } from 'swiper'
+
+// Import Swiper styles
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/scrollbar'
+
 const { $APIs } = useNuxtApp()
 const { data: topCharts } = useAsyncData<chartsWorld[]>('topCharts', () =>
   $APIs.shazam.get('/charts/world')
@@ -44,27 +53,26 @@ provide('isPlaying', isPlaying)
         </NuxtLink>
       </div>
 
-      <!-- <Swiper
+      <Swiper
         slidesPerView="auto"
-        spaceBetween={15}
+        :spaceBetween="15"
         freeMode
         centeredSlides
         centeredSlidesBounds
-        modules={[FreeMode]}
-        class="mt-4"
+        :modules="[FreeMode]"
+        class="mt-4 w-full"
       >
-        {topPlays?.slice(0, 5).map((artist) => (
-          <SwiperSlide
-            key={artist?.key}
-            style={{ width: '25%', height: 'auto' }}
-            class="shadow-lg rounded-full animate-slideright"
-          >
-            <Link to={`/artists/${artist?.artists[0].adamid}`}>
-              <img src={artist?.images?.background} alt="Name" class="rounded-full w-full object-cover" />
-            </Link>
-          </SwiperSlide>
-        ))}
-      </Swiper> -->
+        <SwiperSlide
+          v-for="chart in topCharts?.slice(0, 20)"
+          :key="chart.key"
+          :style="{ width: '25%', height: 'auto' }"
+          class="shadow-lg rounded-full animate-slideright"
+        >
+          <NuxtLink :to="`/artists/${chart.artists[0].adamid}`">
+            <img :src="chart?.images?.background" alt="Name" class="rounded-full w-full object-cover" />
+          </NuxtLink>
+        </SwiperSlide>
+      </Swiper>
     </div>
   </div>
 </template>
