@@ -23,7 +23,6 @@ const playing = () => {
 
 provide('isPlaying', isPlaying)
 refreshNuxtData('artistsDetails')
-console.log(artistData.value)
 </script>
 
 <template>
