@@ -239,3 +239,133 @@ export interface Carrier {
   mcc?: any
   mnc?: any
 }
+
+export interface ArtistDetails {
+  albums: album
+  artists: artist
+  songs: song
+}
+
+export interface album {
+  id: string
+  href: string
+  type: string
+  attributes: albumAttributes
+}
+
+export interface albumAttributes {
+  copyright: string
+  releaseDate: string
+  isMasteredForItunes: boolean
+  artwork: artwork
+  artistName: string
+  audioTraits: string[]
+  genreNames: string[]
+  isCompilation: boolean
+  isComplete: boolean
+  isPrerelease: boolean
+  isSingle: boolean
+  name: string
+  playParams: playParams
+  recordLabel: string
+  releaseDate: string
+  trackCount: number
+  upc: string
+  url: string
+}
+
+export interface artwork {
+  bgColor: string
+  hasP3: false
+  height: number
+  width: number
+  textColor1: string
+  textColor2: string
+  textColor3: string
+  textColor4: string
+  url: string
+}
+
+export interface playParams {
+  id: string
+  kind: string
+}
+
+export interface artist {
+  attributes: ArtistAttributes
+  href: string
+  id: string
+  meta: {
+    views: {
+      order: string[]
+    }
+  }
+  relationships: {
+    ablums: {
+      href: string
+      data: { id: string; type: string; href: string }[]
+    }
+  }
+  type: string
+  views: {
+    'latest-release': {
+      attributes: {
+        title: string
+      }
+      data: { id: string; type: string; href: string }[]
+      href: string
+    }
+    'top-songs': {
+      attributes: {
+        title: string
+      }
+      data: { id: string; type: string; href: string }[]
+      href: string
+    }
+  }
+}
+
+export interface ArtistAttributes {
+  artwork: artwork
+  genreNames: string[]
+  name: string
+  url: string
+}
+
+export interface song {
+  id: string
+  type: string
+  href: string
+  attributes: songAttributes
+}
+
+export interface songAttributes {
+  albumName: string
+  artistName: string
+  artwork: artwork
+  audioLocale: string
+  audioTraits: string[]
+  composerName: string
+  discNumber: number
+  durationInMillis: number | string
+  genreNames: string[]
+  hasLyrics: boolean
+  hasTimeSyncedLyrics: boolean
+  isAppleDigitalMaster: boolean
+  isMasteredForItunes: boolean
+  isrc: string
+  name: string
+  playParams: playParams
+  id: string
+  kind: string
+  previews: preview[]
+  href: string
+  id: string
+  type: string
+}
+
+export interface preview {
+  releaseDate: string
+  trackNumber: number
+  url: string
+}
