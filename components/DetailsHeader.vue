@@ -23,9 +23,6 @@ defineProps({
         <p class="font-bold sm:text-3xl text-xl text-white">
           {{ name }}
         </p>
-        <!-- <NuxtLink :to="to"> -->
-        <p class="text-base text-gray-400 mt-2">{{ name }}</p>
-        <!-- </NuxtLink> -->
 
         <p class="text-base text-gray-400 mt-2">
           {{ genreName }}
