@@ -255,7 +255,6 @@ export interface album {
 
 export interface albumAttributes {
   copyright: string
-  releaseDate: string
   isMasteredForItunes: boolean
   artwork: artwork
   artistName: string
@@ -360,7 +359,6 @@ export interface songAttributes {
   kind: string
   previews: preview[]
   href: string
-  id: string
   type: string
 }
 
