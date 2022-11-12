@@ -9,7 +9,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="flex-1 flex items-center justify-start select-none" :title="activeSong.title">
+  <div class="flex-1 flex items-center justify-start select-none max-w-[50vw]" :title="activeSong.title">
     <div
       :class="{ 'animate-[spin_6s_linear_infinite]': isPlaying }"
       class="hidden sm:block h-16 w-16 mr-4"

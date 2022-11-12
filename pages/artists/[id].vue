@@ -17,10 +17,6 @@ const player = usePlayer()
 const { togglePlaying } = player
 const { isPlaying, currentSong } = storeToRefs(player)
 
-const playing = () => {
-  console.log('clicekd')
-}
-
 provide('isPlaying', isPlaying)
 refreshNuxtData('artistsDetails')
 </script>

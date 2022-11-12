@@ -1,28 +1,25 @@
 <script setup lang="ts">
-import type { PropType } from 'vue';
-import { chartsWorld } from '~~/types';
+import type { PropType } from 'vue'
+import { chartsWorld } from '~~/types'
 
 defineProps({
   song: { type: Object as PropType<chartsWorld> },
   active: { type: Boolean, default: false },
 })
 defineEmits(['togglePlaying'])
-
 </script>
 
 <template>
   <div
     class="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer"
   >
-    <div class="relative w-full h-56 group">
+    <div class="relative w-full h-56 group" @click="$emit('togglePlaying')">
       <div
         class="absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex"
         :class="active ? 'flex bg-black bg-opacity-70' : 'hidden'"
       >
-        <PlayPause
-          :active="active"
-          @togglePlaying="$emit('togglePlaying')"
-        />
+        <PlayPause :active="active" />
+        <!-- @togglePlaying="$emit('togglePlaying')" -->
       </div>
       <img alt="song_img" :src="song?.images?.background" class="w-full h-full rounded-lg" />
     </div>
@@ -41,5 +38,3 @@ defineEmits(['togglePlaying'])
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped></style>
