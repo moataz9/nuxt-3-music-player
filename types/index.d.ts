@@ -86,157 +86,156 @@ export interface CurrentSong {
   subtitle: string
 }
 
-
 export interface ipRegistryData {
-  ip: string;
-  type: string;
-  hostname?: any;
-  carrier: Carrier;
-  company: Company;
-  connection: Connection;
-  currency: Currency;
-  location: Location;
-  security: Security;
-  time_zone: Timezone;
-  user_agent: Useragent;
+  ip: string
+  type: string
+  hostname?: any
+  carrier: Carrier
+  company: Company
+  connection: Connection
+  currency: Currency
+  location: Location
+  security: Security
+  time_zone: Timezone
+  user_agent: Useragent
 }
 
 export interface Useragent {
-  header: string;
-  name: string;
-  type: string;
-  version: string;
-  version_major: string;
-  device: Device;
-  engine: Engine;
-  os: Os;
+  header: string
+  name: string
+  type: string
+  version: string
+  version_major: string
+  device: Device
+  engine: Engine
+  os: Os
 }
 
 export interface Os {
-  name: string;
-  type: string;
-  version?: any;
+  name: string
+  type: string
+  version?: any
 }
 
 export interface Engine {
-  name: string;
-  type: string;
-  version: string;
-  version_major: string;
+  name: string
+  type: string
+  version: string
+  version_major: string
 }
 
 export interface Device {
-  brand: string;
-  name: string;
-  type: string;
+  brand: string
+  name: string
+  type: string
 }
 
 export interface Timezone {
-  id: string;
-  abbreviation: string;
-  current_time: string;
-  name: string;
-  offset: number;
-  in_daylight_saving: boolean;
+  id: string
+  abbreviation: string
+  current_time: string
+  name: string
+  offset: number
+  in_daylight_saving: boolean
 }
 
 export interface Security {
-  is_abuser: boolean;
-  is_attacker: boolean;
-  is_bogon: boolean;
-  is_cloud_provider: boolean;
-  is_proxy: boolean;
-  is_relay: boolean;
-  is_tor: boolean;
-  is_tor_exit: boolean;
-  is_vpn: boolean;
-  is_anonymous: boolean;
-  is_threat: boolean;
+  is_abuser: boolean
+  is_attacker: boolean
+  is_bogon: boolean
+  is_cloud_provider: boolean
+  is_proxy: boolean
+  is_relay: boolean
+  is_tor: boolean
+  is_tor_exit: boolean
+  is_vpn: boolean
+  is_anonymous: boolean
+  is_threat: boolean
 }
 
 export interface Location {
-  continent: Continent;
-  country: Country;
-  region: Continent;
-  city: string;
-  postal?: any;
-  latitude: number;
-  longitude: number;
-  language: Language;
-  in_eu: boolean;
+  continent: Continent
+  country: Country
+  region: Continent
+  city: string
+  postal?: any
+  latitude: number
+  longitude: number
+  language: Language
+  in_eu: boolean
 }
 
 export interface Country {
-  area: number;
-  borders: string[];
-  calling_code: string;
-  capital: string;
-  code: string;
-  name: string;
-  population: number;
-  population_density: number;
-  flag: Flag;
-  languages: Language[];
-  tld: string;
+  area: number
+  borders: string[]
+  calling_code: string
+  capital: string
+  code: string
+  name: string
+  population: number
+  population_density: number
+  flag: Flag
+  languages: Language[]
+  tld: string
 }
 
 export interface Language {
-  code: string;
-  name: string;
-  native: string;
+  code: string
+  name: string
+  native: string
 }
 
 export interface Flag {
-  emoji: string;
-  emoji_unicode: string;
-  emojitwo: string;
-  noto: string;
-  twemoji: string;
-  wikimedia: string;
+  emoji: string
+  emoji_unicode: string
+  emojitwo: string
+  noto: string
+  twemoji: string
+  wikimedia: string
 }
 
 export interface Continent {
-  code: string;
-  name: string;
+  code: string
+  name: string
 }
 
 export interface Currency {
-  code: string;
-  name: string;
-  name_native: string;
-  plural: string;
-  plural_native: string;
-  symbol: string;
-  symbol_native: string;
-  format: Format;
+  code: string
+  name: string
+  name_native: string
+  plural: string
+  plural_native: string
+  symbol: string
+  symbol_native: string
+  format: Format
 }
 
 export interface Format {
-  negative: Negative;
-  positive: Negative;
+  negative: Negative
+  positive: Negative
 }
 
 export interface Negative {
-  prefix: string;
-  suffix: string;
+  prefix: string
+  suffix: string
 }
 
 export interface Connection {
-  asn: number;
-  domain: string;
-  organization: string;
-  route: string;
-  type: string;
+  asn: number
+  domain: string
+  organization: string
+  route: string
+  type: string
 }
 
 export interface Company {
-  domain: string;
-  name: string;
-  type: string;
+  domain: string
+  name: string
+  type: string
 }
 
 export interface Carrier {
-  name?: any;
-  mcc?: any;
-  mnc?: any;
+  name?: any
+  mcc?: any
+  mnc?: any
 }
