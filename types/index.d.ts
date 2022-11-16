@@ -367,3 +367,12 @@ export interface preview {
   trackNumber: number
   url: string
 }
+
+export interface SearchResults {
+  artists: artist[]
+  tracks: tracks
+}
+
+export interface tracks {
+  hits: { track: chartsWorld }[]
+}
