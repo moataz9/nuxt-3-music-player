@@ -7,6 +7,10 @@ const { $APIs } = useNuxtApp()
 const route = useRoute()
 const searchTerm = route.params.searchTerm
 
+useHead({
+  title: 'searching results for ' + searchTerm
+})
+
 const { data: searchCharts } = useAsyncData<SearchResults>('searchCharts', () =>
   $APIs.shazam.get(`/search/multi?search_type=SONGS_ARTISTS&query=${searchTerm}`)
 )

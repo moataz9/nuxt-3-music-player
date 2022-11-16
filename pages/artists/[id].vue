@@ -13,6 +13,10 @@ const { data: artistData, pending } = useAsyncData(
   () => $APIs.shazam.get(`/artists/details?artist_id=${artistId}`) as Promise<ArtistDetails>
 )
 
+useHead({
+  title: 'Artist Page',
+})
+
 const player = usePlayer()
 const { togglePlaying } = player
 const { isPlaying, currentSong } = storeToRefs(player)

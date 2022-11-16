@@ -6,6 +6,10 @@ const { data: topCharts } = useAsyncData(
   'topCharts',
   () => $APIs.shazam.get('/charts/world') as Promise<chartsWorld[]>
 )
+
+useHead({
+  title: 'Top Artists',
+})
 </script>
 
 <template>

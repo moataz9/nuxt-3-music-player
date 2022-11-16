@@ -14,6 +14,11 @@ const { data: homeCharts } = useAsyncData(
   () => $APIs.shazam.get('/charts/world') as Promise<chartsWorld[]>
 )
 
+
+useHead({
+  title: 'Home'
+})
+
 const playerStore = usePlayer()
 const { togglePlaying } = playerStore
 const { currentSong, isPlaying } = storeToRefs(playerStore)

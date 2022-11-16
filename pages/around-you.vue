@@ -16,6 +16,11 @@ const { data: countryCharts } = useAsyncData('countryCharts', async () => {
   }
 })
 
+
+useHead({
+  title: 'Around U'
+})
+
 const playerStore = usePlayer()
 const { togglePlaying } = playerStore
 const { currentSong, isPlaying } = storeToRefs(playerStore)
