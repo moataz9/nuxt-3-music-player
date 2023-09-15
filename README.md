@@ -1,6 +1,6 @@
-# Nuxt 3 Minimal Starter
+# Music App Player with pinia Store
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+[Music app Live Link](https://nuxt-3-music-player-moataz9.netlify.app).
 
 ## Setup
 
